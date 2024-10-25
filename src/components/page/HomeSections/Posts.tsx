@@ -9,7 +9,6 @@ import { LuBookmark } from "react-icons/lu";
 import { CgMoreO } from "react-icons/cg";
 
 import PostLikes from "./PostLikes";
-import { useGetMeQuery } from "@/redux/api/auth";
 import { useRouter } from "next/navigation";
 import Image from "next/image";
 import OtherPost from "./OtherPost";
@@ -17,17 +16,18 @@ import { usepostStore } from "@/store/usePostStore";
 
 const Posts: FC = () => {
   const { data, isLoading } = useGetAllPostsQuery();
-  const { data: user, isLoading: userIsLoading } = useGetMeQuery();
   const router = useRouter();
   const { setOtherPost } = usepostStore();
 
   useEffect(() => {
-    if (!userIsLoading && !user?.profile) {
+    const tokensString = localStorage.getItem("tokens");
+    if (!tokensString) {
       router.push("/auth/sign-in");
+      return;
     }
-  }, [userIsLoading, user]);
+  }, [isLoading]);
 
-  if (isLoading || userIsLoading) return null;
+  if (isLoading) return null;
 
   return (
     <section className={scss.Posts}>

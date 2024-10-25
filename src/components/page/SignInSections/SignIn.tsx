@@ -37,7 +37,7 @@ const SignIn: FC = () => {
       response.error
         ? setApiResponse(response?.error.data.message)
         : (localStorage.setItem("tokens", JSON.stringify(response.data)),
-          setTimeout(() => router.push("/"), 1000),
+          setTimeout(() => router.push("/"), 400),
           reset());
     } catch (error: any) {
       console.log("Неверные входные данные", error.message);
