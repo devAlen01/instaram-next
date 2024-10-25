@@ -13,6 +13,7 @@ import { useRouter } from "next/navigation";
 import Image from "next/image";
 import OtherPost from "./OtherPost";
 import { usepostStore } from "@/store/usePostStore";
+import CreatePost from "./CreatePost";
 
 const Posts: FC = () => {
   const { data, isLoading } = useGetAllPostsQuery();
@@ -88,6 +89,7 @@ const Posts: FC = () => {
           ))}
         </div>
         <OtherPost />
+        <CreatePost />
       </div>
     </section>
   );

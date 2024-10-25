@@ -31,7 +31,6 @@
 
         img,
         video {
-          z-index: auto;
           width: 100%;
           height: 400px;
           object-fit: contain;
@@ -50,7 +49,7 @@
             transition: 0.4s;
             &:hover {
               transition: 0.4s;
-              color: #3704d1ea;
+              color: #5616edf9;
               font-size: 41px;
             }
           }

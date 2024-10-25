@@ -7,12 +7,12 @@ import Link from "next/link";
 import { useGetMeQuery } from "@/redux/api/auth";
 import { useRouter } from "next/navigation";
 import { TbSquareRoundedPlus } from "react-icons/tb";
-import CreatePost from "@/components/page/HomeSections/CreatePost";
+import { usepostStore } from "@/store/usePostStore";
 
 const SideBar: FC = () => {
   const { data } = useGetMeQuery();
   const router = useRouter();
-  const [isCreate, setIsCreate] = useState<boolean>(false);
+  const { setIsCreate } = usepostStore();
 
   return (
     <section className={scss.SideBar}>
@@ -49,7 +49,6 @@ const SideBar: FC = () => {
               />
               <span className={scss.name}>Profile</span>
             </Link>
-            <CreatePost isCreate={isCreate} setIsCreate={setIsCreate} />
           </div>
         </div>
       </div>

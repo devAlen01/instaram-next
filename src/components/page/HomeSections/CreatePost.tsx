@@ -6,16 +6,13 @@ import { SlClose } from "react-icons/sl";
 import { useCreatePostMutation } from "@/redux/api/posts";
 import { useUploadMediaFileMutation } from "@/redux/api/upload";
 import { SubmitHandler, useForm } from "react-hook-form";
+import { usepostStore } from "@/store/usePostStore";
 
-interface ICreatePost {
-  setIsCreate: (value: boolean) => void;
-  isCreate: boolean;
-}
-
-const CreatePost: FC<ICreatePost> = ({ isCreate, setIsCreate }) => {
+const CreatePost: FC = () => {
   const [createPostMutation] = useCreatePostMutation();
   const [uploadMediaFileMutation] = useUploadMediaFileMutation();
   const { register, handleSubmit, reset } = useForm<POSTS.CreatePostRequest>();
+  const { isCreate, setIsCreate } = usepostStore();
 
   const onSubmit: SubmitHandler<POSTS.CreatePostRequest> = async (data) => {
     const selectedFile = data.file![0];
