@@ -22,12 +22,12 @@ const Posts: FC = () => {
   const { setOtherPost } = usepostStore();
 
   useEffect(() => {
-    if (!user?.profile) {
+    if (!userIsLoading && !user?.profile) {
       router.push("/auth/sign-in");
     }
-  }, [user]);
+  }, [userIsLoading, user]);
 
-  if (isLoading && userIsLoading) return null;
+  if (isLoading || userIsLoading) return null;
 
   return (
     <section className={scss.Posts}>
