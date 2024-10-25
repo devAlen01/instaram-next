@@ -22,9 +22,11 @@ const Posts: FC = () => {
   const { setOtherPost } = usepostStore();
 
   useEffect(() => {
-    if (!user?.profile?.isActive) {
-      router.push("/auth/sign-in");
-    }
+    setTimeout(() => {
+      if (!user?.profile?.isActive) {
+        router.push("/auth/sign-in");
+      }
+    }, 1200);
   }, [user]);
 
   if (isLoading && userIsLoading) return null;
