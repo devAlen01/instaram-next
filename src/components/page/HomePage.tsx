@@ -1,10 +1,10 @@
 import React, { FC } from "react";
-import Welcome from "./HomeSections/Welcome";
+import Posts from "./HomeSections/Posts";
 
 const HomePage: FC = () => {
   return (
     <>
-      <Welcome />
+      <Posts />
     </>
   );
 };

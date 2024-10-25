@@ -1,0 +1,61 @@
+.OtherPost {
+  position: fixed;
+  inset: 0;
+  width: 100%;
+  height: 100vh;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background-color: rgba(0, 0, 0, 0.892);
+  backdrop-filter: blur(10px);
+  .content {
+    width: 100%;
+    height: 900px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-direction: column;
+    .closeButton {
+      svg {
+        font-size: 33px;
+        cursor: pointer;
+      }
+    }
+    .posts {
+      height: 60%;
+      margin-top: 10px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      flex-wrap: wrap;
+      gap: 10px;
+      overflow-y: scroll;
+      scrollbar-width: none;
+
+      .post {
+        width: 310px;
+        display: flex;
+        align-items: start;
+        justify-content: start;
+
+        .image {
+          width: 100%;
+          display: flex;
+          align-items: center;
+          justify-content: center;
+          border: 1px solid rgba(128, 128, 128, 0.465);
+          img,
+          video {
+            width: 100%;
+            height: 300px;
+            object-fit: contain;
+            object-position: center;
+            &:hover {
+              cursor: pointer;
+            }
+          }
+        }
+      }
+    }
+  }
+}

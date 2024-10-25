@@ -1,25 +1,76 @@
-import React, { FC } from "react";
+"use client";
+import React, { FC, useState } from "react";
 import scss from "./SignUp.module.scss";
 import Link from "next/link";
 import Image from "next/image";
 import logo from "@/assets/logo.png";
+import { useSignUpMutation } from "@/redux/api/auth";
+import { SubmitHandler, useForm } from "react-hook-form";
+import { useRouter } from "next/navigation";
 
 const SignUp: FC = () => {
+  const [signUpMutation] = useSignUpMutation();
+  const [apiResponse, setApiResponse] = useState<string>("");
+  const { register, handleSubmit, reset } = useForm<ISignUpAuth>();
+  const router = useRouter();
+
+  const onSubmit: SubmitHandler<ISignUpAuth> = async (data) => {
+    try {
+      const newUser: ISignUpAuth = {
+        email: data.email,
+        username: data.username,
+        photo: data.photo,
+        password: data.password,
+      };
+      const response: any = await signUpMutation(newUser);
+      response.error
+        ? setApiResponse(response?.error.data.message)
+        : (localStorage.setItem("tokens", JSON.stringify(response.data)),
+          setTimeout(() => router.push("/"), 1000),
+          reset());
+    } catch (error: any) {
+      console.log("Неверные входные данные", error.message);
+      setApiResponse(error.message);
+    }
+  };
+
   return (
     <section className={scss.SignUp}>
       <div className="container">
         <div className={scss.content}>
           <div className={scss.auth}>
             <div className={scss.forms}>
-              <Image src={logo} alt="logo" />
-
-              <p>Sign up to see your friends' photos and videos.</p>
-
-              <form>
-                <input type="text" placeholder="Email" />
-                <input type="text" placeholder="Name" />
-                <input type="text" placeholder="Photo" />
-                <input type="password" placeholder="Password" />
+              <Image src={logo} alt="logo" width={200} height={60} priority />
+              {apiResponse.length > 0 ? (
+                <p style={{ color: "red" }}>{apiResponse}</p>
+              ) : (
+                <p>Sign up to see your friends&apos; photos and videos.</p>
+              )}
+              <form onSubmit={handleSubmit(onSubmit)}>
+                <input
+                  type="email"
+                  placeholder="Email"
+                  required
+                  {...register("email", { required: true })}
+                />
+                <input
+                  required
+                  type="text"
+                  placeholder="Name"
+                  {...register("username", { required: true })}
+                />
+                <input
+                  required
+                  type="text"
+                  placeholder="Photo"
+                  {...register("photo", { required: true })}
+                />
+                <input
+                  required
+                  type="password"
+                  placeholder="Password"
+                  {...register("password", { required: true })}
+                />
                 <div className={scss.text}>
                   <p>
                     People who use our service may have downloaded your contact
@@ -50,7 +101,7 @@ const SignUp: FC = () => {
                   </p>
                 </div>
 
-                <button>Register</button>
+                <button type="submit">Register</button>
               </form>
             </div>
 

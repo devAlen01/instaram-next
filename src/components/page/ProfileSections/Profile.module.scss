@@ -1,0 +1,131 @@
+.Profile {
+  width: 80%;
+  margin: 20px auto;
+  .content {
+    .profile {
+      height: 300px;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      .left {
+        .image {
+          width: 180px;
+          height: 180px;
+          img {
+            width: 100%;
+            height: 100%;
+            border-radius: 50%;
+            object-fit: cover;
+            object-position: top;
+          }
+        }
+      }
+      .right {
+        width: 700px;
+        height: 80%;
+        display: flex;
+        flex-direction: column;
+        align-items: start;
+        justify-content: start;
+        gap: 30px;
+        .userData {
+          display: flex;
+          align-items: center;
+          justify-content: start;
+          gap: 10px;
+          h3 {
+            font-size: 22px;
+            font-weight: 400;
+          }
+
+          .btns {
+            display: flex;
+            align-items: center;
+            gap: 7px;
+            button {
+              font-weight: 600;
+              border: none;
+              background-color: rgba(67, 62, 62, 0.764);
+              width: 95px;
+              height: 30px;
+              border-radius: 4px;
+              &:hover {
+                background-color: rgb(67, 62, 62);
+              }
+            }
+          }
+        }
+        .folowers {
+          display: flex;
+          align-items: center;
+          gap: 15px;
+          p {
+            font-size: 15px;
+            .totalCount {
+              font-weight: 700;
+            }
+          }
+        }
+        .description {
+          h5 {
+            font-size: 14px;
+            font-weight: 700;
+          }
+          p {
+            font-size: 14px;
+          }
+        }
+      }
+    }
+    .line {
+      width: 100%;
+      height: 0.3px;
+      background-color: rgba(128, 128, 128, 0.376);
+    }
+    .posts {
+      margin-top: 20px;
+      display: flex;
+      align-items: start;
+      justify-content: start;
+      flex-wrap: wrap;
+      gap: 10px;
+      .post {
+        position: relative;
+        width: 310px;
+        display: flex;
+        align-items: start;
+        justify-content: start;
+        .deleteIcon {
+          position: absolute;
+          right: 0;
+          margin: 7px;
+          &:hover {
+            color: red;
+          }
+          svg {
+            font-size: 27px;
+            cursor: pointer;
+          }
+        }
+        .image {
+          width: 100%;
+          display: flex;
+          align-items: center;
+          justify-content: center;
+          border: 1px solid rgba(128, 128, 128, 0.465);
+
+          img,
+          video {
+            width: 100%;
+            height: 300px;
+            object-fit: contain;
+            object-position: center;
+            &:hover {
+              cursor: pointer;
+            }
+          }
+        }
+      }
+    }
+  }
+}

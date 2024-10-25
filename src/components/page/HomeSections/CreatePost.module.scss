@@ -1,0 +1,61 @@
+.CreatePost {
+  position: fixed;
+
+  inset: 0;
+  width: 100%;
+  height: 100vh;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background-color: rgba(4, 3, 3, 0.481);
+  backdrop-filter: blur(10px);
+  .content {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    .forms {
+      width: 500px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      flex-direction: column;
+      gap: 30px 0;
+      .closeButton {
+        svg {
+          font-size: 33px;
+          cursor: pointer;
+        }
+      }
+      form {
+        width: 100%;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        flex-direction: column;
+        gap: 10px 0;
+        input,
+        button,
+        select {
+          border: 1px solid rgb(168, 163, 163);
+          width: 80%;
+          height: 35px;
+          font-size: 14px;
+          padding: 0 5px;
+          outline: none;
+          border-radius: 4px;
+        }
+        button {
+          margin-top: 10px;
+          border: none;
+          background-color: #0095f6;
+          color: white;
+          transition: 0.2s;
+          &:hover {
+            background-color: #5600f6;
+            transition: 0.2s;
+          }
+        }
+      }
+    }
+  }
+}

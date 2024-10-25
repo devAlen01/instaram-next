@@ -1,0 +1,118 @@
+.Forgot {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  .content {
+    height: 100vh;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 20px;
+
+    .auth {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      flex-direction: column;
+      border: 1px solid rgba(255, 255, 255, 0.426);
+      width: 370px;
+      height: 560px;
+      border-radius: 1px;
+      .forms {
+        height: 90%;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        flex-direction: column;
+        gap: 30px 0;
+
+        .icon {
+          display: flex;
+          align-items: center;
+          justify-content: center;
+          flex-direction: column;
+          font-weight: 600;
+          width: 60%;
+          p {
+            text-align: center;
+            font-size: 14px;
+            margin-top: 10px;
+          }
+        }
+
+        .text {
+          text-align: center;
+          width: 80%;
+          font-size: 13px;
+          color: rgb(128, 128, 128);
+        }
+        form {
+          width: 100%;
+          display: flex;
+          align-items: center;
+          justify-content: center;
+          flex-direction: column;
+          gap: 10px 0;
+          input,
+          button {
+            border: 1px solid rgb(168, 163, 163);
+            width: 80%;
+            height: 35px;
+            font-size: 14px;
+            padding: 0 5px;
+            outline: none;
+            border-radius: 4px;
+          }
+          button {
+            margin-top: 10px;
+            border: none;
+            background-color: #0095f6;
+            color: white;
+            transition: 0.3s;
+
+            &:hover {
+              background-color: #5600f6;
+              transition: 0.3s;
+            }
+          }
+        }
+        .or {
+          width: 78%;
+          display: flex;
+          align-items: center;
+          justify-content: center;
+          gap: 0 8px;
+          .line {
+            width: 100%;
+            height: 0.3px;
+            background-color: rgba(128, 128, 128, 0.474);
+          }
+        }
+
+        .register {
+          color: #fefefe;
+          font-size: 16px;
+          font-weight: 600;
+          transition: 0.2s;
+          &:hover {
+            color: #79777c8c;
+            transition: 0.2s;
+          }
+        }
+      }
+      .bottom {
+        padding: 15px 0;
+        width: 100%;
+        background-color: rgba(128, 128, 128, 0.223);
+        display: flex;
+        align-items: center;
+        justify-content: center;
+
+        a {
+          font-weight: 600;
+          color: #fff;
+        }
+      }
+    }
+  }
+}
