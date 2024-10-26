@@ -5,6 +5,7 @@ import scss from "./EditProfileForm.module.scss";
 import { useUpdateProfileMutation } from "@/redux/api/auth";
 import { SubmitHandler, useForm } from "react-hook-form";
 import { SlClose } from "react-icons/sl";
+import { useUploadMediaFileMutation } from "@/redux/api/upload";
 interface IUpdateProps {
   username: string;
   photo: string;
@@ -20,12 +21,17 @@ const EditProfileForm: FC<IUpdateProps> = ({
   const { register, handleSubmit, reset } =
     useForm<AUTH.UpdateProfileRequest>();
   const [updateProfileMutation] = useUpdateProfileMutation();
+  const [uploadMediaFileMutation] = useUploadMediaFileMutation();
 
   const handleUpdate: SubmitHandler<AUTH.UpdateProfileRequest> = async (
     data
   ) => {
+    const selectedFile = data.file![0];
+    const formData = new FormData();
+    formData.append("file", selectedFile);
+    const { data: file } = await uploadMediaFileMutation(formData);
     const newData: AUTH.UpdateProfileRequest = {
-      photo: data.photo,
+      photo: String(file?.url),
       username: data.username,
     };
     try {
@@ -55,10 +61,8 @@ const EditProfileForm: FC<IUpdateProps> = ({
               required
             />
             <input
-              defaultValue={photo}
-              type="text"
-              placeholder="New Photo"
-              {...register("photo", { required: true })}
+              type="file"
+              {...register("file", { required: true })}
               required
             />
             <button type="submit">Submit</button>

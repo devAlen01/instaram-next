@@ -7,6 +7,7 @@ import { usePathname } from "next/navigation";
 import { useGetMeQuery, useRefreshTokenMutation } from "@/redux/api/auth";
 import SideBar from "./SideBar/SideBar";
 import Loading from "@/ui/Loading/Loading";
+import CreatePost from "../page/HomeSections/CreatePost";
 
 const LayouSite = ({ children }: { children: ReactNode }) => {
   const [isAuthPage, setIsAuthPage] = useState<boolean>(false);
@@ -74,6 +75,7 @@ const LayouSite = ({ children }: { children: ReactNode }) => {
             borderLeft: "1px solid rgba(128, 128, 128, 0.376)",
           }}
         ></div>
+        <CreatePost />
       </div>
     </div>
   );

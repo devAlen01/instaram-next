@@ -29,6 +29,7 @@ namespace AUTH {
   type UpdateProfileRequest = {
     username: string;
     photo: string;
+    file?: string[];
   };
 
   type LogOutResponse = string;
