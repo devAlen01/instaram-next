@@ -30,7 +30,7 @@ const Profile: FC = () => {
     }
   }, []);
 
-  if (isLoadPost && isLoadPost) return <Loading />;
+  if (isLoadPost && isLoadMe) return <Loading />;
 
   return (
     <section className={scss.Profile}>

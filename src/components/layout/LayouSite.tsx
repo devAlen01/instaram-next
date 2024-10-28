@@ -11,8 +11,8 @@ import CreatePost from "../page/HomeSections/CreatePost";
 
 const LayouSite = ({ children }: { children: ReactNode }) => {
   const [isAuthPage, setIsAuthPage] = useState<boolean>(false);
-  const [refreshTokenMutation] = useRefreshTokenMutation();
   const [loading, setLoading] = useState<boolean>(true);
+  const [refreshTokenMutation] = useRefreshTokenMutation();
   const { isLoading, data } = useGetMeQuery();
   const pathname = usePathname();
 
@@ -37,7 +37,7 @@ const LayouSite = ({ children }: { children: ReactNode }) => {
       console.log("🚀 ~ refreshToken ~ res:", res);
       localStorage.setItem("tokens", JSON.stringify(res.data));
     };
-    const interval = setInterval(refreshToken, 600000);
+    const interval = setInterval(refreshToken, 300000);
 
     return () => {
       clearInterval(interval);
@@ -57,23 +57,18 @@ const LayouSite = ({ children }: { children: ReactNode }) => {
     <div className={scss.LayouSite}>
       <div className={scss.site}>
         {!isAuthPage && <SideBar />}
-        <div
-          className={scss.content}
-          style={{
-            marginLeft: pathname === "/profile" || !isAuthPage ? "270px" : "",
-          }}
-        >
-          {!isAuthPage && pathname !== "/profile" && <Header />}
+        <div className={scss.content}>
+          {!isAuthPage && !pathname.includes("profile") ? <Header /> : null}
           <main>{children}</main>
           {!isAuthPage && <Footer />}
         </div>
         <div
           style={{
-            display: pathname === "/profile" || isAuthPage ? "none" : "",
-            width: "600px",
-            height: "100vh",
-            borderLeft: "1px solid rgba(128, 128, 128, 0.376)",
+            display: pathname.includes("profile") ? "none" : "",
           }}
+          className={
+            !isAuthPage || pathname.includes("profile") ? scss.right : ""
+          }
         ></div>
         <CreatePost />
       </div>

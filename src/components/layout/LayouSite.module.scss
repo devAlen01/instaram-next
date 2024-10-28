@@ -6,7 +6,16 @@
   min-height: 100vh;
   .site {
     display: flex;
-
+    .right {
+      width: clamp(220px, 33vw, 600px);
+      height: 100vh;
+      border-left: 1px solid rgba(128, 128, 128, 0.376);
+      position: sticky;
+      top: 0;
+      @media screen and (max-width: 1170px) {
+        display: none;
+      }
+    }
     .content {
       width: 100%;
       display: flex;

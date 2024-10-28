@@ -11,6 +11,7 @@ import screen4 from "@/assets/screenshot4.png";
 import { SubmitHandler, useForm } from "react-hook-form";
 import { useSignInMutation } from "@/redux/api/auth";
 import { useRouter } from "next/navigation";
+import InstaIcon from "@/assets/icons/insta-icon";
 
 const SignIn: FC = () => {
   const [counter, setCounter] = useState<number>(0);
@@ -60,7 +61,10 @@ const SignIn: FC = () => {
           </div>
           <div className={scss.auth}>
             <div className={scss.forms}>
-              <Image width={200} height={60} src={logo} alt="logo" priority />
+              {/* <Image width={200} height={60} src={logo} alt="logo" priority /> */}
+              <div className={scss.icon}>
+                <InstaIcon />
+              </div>
 
               <form onSubmit={handleSubmit(onSubmit)}>
                 {apiResponse.length > 0 ? (

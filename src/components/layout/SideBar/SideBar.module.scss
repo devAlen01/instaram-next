@@ -1,8 +1,12 @@
 .SideBar {
   height: 100vh;
   border-right: 1px solid rgba(128, 128, 128, 0.376);
-  position: fixed;
+  position: sticky;
+  top: 0;
   background-color: black;
+  @media screen and (max-width: 900px) {
+    display: none;
+  }
   .container {
     margin-left: 20px;
     .content {
@@ -16,10 +20,16 @@
         svg {
           width: 107px;
           height: auto;
+          @media screen and (max-width: 1000px) {
+            display: none;
+          }
         }
       }
       .nav {
         width: 240px;
+        @media screen and (max-width: 1000px) {
+          width: 50px;
+        }
         display: flex;
         flex-direction: column;
         align-items: start;
@@ -38,6 +48,7 @@
             transition: 0.3s;
             background-color: rgba(58, 59, 57, 0.449);
           }
+
           a,
           .link {
             display: flex;
@@ -46,12 +57,18 @@
             gap: 0 15px;
             color: #fff;
             font-size: 17px;
+
             .icon {
               display: flex;
               align-items: center;
               justify-content: center;
               svg {
                 font-size: 25px;
+              }
+            }
+            .name {
+              @media screen and (max-width: 1000px) {
+                display: none;
               }
             }
           }
@@ -81,6 +98,9 @@
         .name {
           color: #fff;
           font-size: 17px;
+          @media screen and (max-width: 1000px) {
+            display: none;
+          }
         }
       }
     }

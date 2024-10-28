@@ -1,4 +1,4 @@
-.Profile {
+.UserProfile {
   width: 80%;
   margin: 20px auto;
   @media screen and (max-width: 1000px) {
@@ -10,7 +10,6 @@
     justify-content: center;
     flex-direction: column;
     .profile {
-      margin: 20px 0;
       width: 960px;
       height: 300px;
       display: flex;
@@ -54,10 +53,10 @@
           display: flex;
           align-items: center;
           justify-content: start;
+          gap: 10px;
           @media screen and (max-width: 1000px) {
             flex-direction: column;
           }
-          gap: 10px;
           h3 {
             font-size: clamp(14px, 3vw, 22px);
             font-weight: 400;
@@ -67,7 +66,6 @@
             display: flex;
             align-items: center;
             gap: 7px;
-
             button {
               font-weight: 600;
               border: none;
@@ -76,9 +74,13 @@
               height: 30px;
               border-radius: 4px;
               font-size: clamp(12px, 1vw, 14px);
+
               &:hover {
                 background-color: rgb(67, 62, 62);
               }
+            }
+            .options {
+              width: 30px;
             }
           }
         }
@@ -88,6 +90,7 @@
           gap: 15px;
           p {
             font-size: clamp(12px, 2vw, 15px);
+
             .totalCount {
               font-weight: 700;
             }
@@ -95,8 +98,10 @@
         }
         .description {
           width: clamp(290px, 66vw, 500px);
+
           h5 {
             font-size: clamp(12px, 1vw, 14px);
+
             font-weight: 700;
           }
           p {
@@ -119,24 +124,12 @@
       flex-wrap: wrap;
       gap: 10px;
       .post {
-        position: relative;
         width: clamp(170px, 23vw, 310px);
+
         display: flex;
         align-items: start;
         justify-content: start;
-        .deleteIcon {
-          position: absolute;
-          right: 0;
-          margin: 7px;
-          z-index: 2;
-          &:hover {
-            color: red;
-          }
-          svg {
-            font-size: 27px;
-            cursor: pointer;
-          }
-        }
+
         .image {
           width: 100%;
           display: flex;
@@ -148,6 +141,7 @@
           video {
             width: 100%;
             height: clamp(140px, 21vw, 300px);
+
             object-fit: contain;
             object-position: center;
             &:hover {

@@ -26,7 +26,7 @@ const SideBar: FC = () => {
               <Link href={item.link} className={scss.item} key={index}>
                 <div className={scss.link}>
                   <span className={scss.icon}>{item.icon}</span>
-                  <span>{item.name}</span>
+                  <span className={scss.name}>{item.name}</span>
                 </div>
               </Link>
             ))}
@@ -35,7 +35,7 @@ const SideBar: FC = () => {
                 <span className={scss.icon}>
                   <TbSquareRoundedPlus />
                 </span>
-                <span>Create</span>
+                <span className={scss.name}>Create</span>
               </div>
             </div>
 

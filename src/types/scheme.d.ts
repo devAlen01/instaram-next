@@ -3,6 +3,7 @@ interface ISignUpAuth {
   password: string;
   username: string;
   photo: string;
+  file?: string[];
 }
 interface IAuthToken {
   accessToken: string;
@@ -36,6 +37,29 @@ interface IPost {
   mediaType: string;
   createdAt: string;
   updatedAt: string;
+  user: {
+    id: number;
+    username: string;
+    role: string;
+    email: string;
+    isActive: boolean;
+    photo: string;
+    createdAt: string;
+    updatedAt: string;
+  };
+}
+
+interface IAnotherUser {
+  user: {
+    id: number;
+    username: string;
+    role: string;
+    email: string;
+    isActive: boolean;
+    photo: string;
+    createdAt: string;
+    updatedAt: string;
+  };
 }
 
 interface ILikePost {

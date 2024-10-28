@@ -7,19 +7,26 @@ import logo from "@/assets/logo.png";
 import { useSignUpMutation } from "@/redux/api/auth";
 import { SubmitHandler, useForm } from "react-hook-form";
 import { useRouter } from "next/navigation";
+import { useUploadMediaFileMutation } from "@/redux/api/upload";
+import InstaIcon from "@/assets/icons/insta-icon";
 
 const SignUp: FC = () => {
   const [signUpMutation] = useSignUpMutation();
+  const [uploadMediaFileMutation] = useUploadMediaFileMutation();
   const [apiResponse, setApiResponse] = useState<string>("");
   const { register, handleSubmit, reset } = useForm<ISignUpAuth>();
   const router = useRouter();
 
   const onSubmit: SubmitHandler<ISignUpAuth> = async (data) => {
+    const userPhoto = data.file![0];
+    const formData = new FormData();
+    formData.append("file", userPhoto);
+    const { data: photo } = await uploadMediaFileMutation(formData);
     try {
       const newUser: ISignUpAuth = {
         email: data.email,
         username: data.username,
-        photo: data.photo,
+        photo: String(photo?.url),
         password: data.password,
       };
       const response: any = await signUpMutation(newUser);
@@ -40,7 +47,9 @@ const SignUp: FC = () => {
         <div className={scss.content}>
           <div className={scss.auth}>
             <div className={scss.forms}>
-              <Image src={logo} alt="logo" width={200} height={60} priority />
+              <div className={scss.icon}>
+                <InstaIcon />
+              </div>
               {apiResponse.length > 0 ? (
                 <p style={{ color: "red" }}>{apiResponse}</p>
               ) : (
@@ -61,9 +70,8 @@ const SignUp: FC = () => {
                 />
                 <input
                   required
-                  type="text"
-                  placeholder="Photo"
-                  {...register("photo", { required: true })}
+                  type="file"
+                  {...register("file", { required: true })}
                 />
                 <input
                   required
