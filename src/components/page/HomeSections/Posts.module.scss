@@ -94,13 +94,14 @@
           align-items: center;
           justify-content: center;
           cursor: pointer;
-          @media screen and (max-width: 800px) {
-            display: none;
-          }
+
           svg {
             color: #f5efefe8;
             font-size: clamp(16px, 6vw, 34px);
             tansition: 0.4s;
+            @media screen and (max-width: 800px) {
+              display: none;
+            }
             &:hover {
               transition: 0.4s;
               color: #5616edf9;
