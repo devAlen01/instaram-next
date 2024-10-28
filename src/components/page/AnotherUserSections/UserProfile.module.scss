@@ -6,7 +6,7 @@
   }
   .content {
     display: flex;
-    align-items: center;
+    align-items: start;
     justify-content: center;
     flex-direction: column;
     .profile {
@@ -125,7 +125,6 @@
       gap: 10px;
       .post {
         width: clamp(167px, 23vw, 310px);
-
         display: flex;
         align-items: start;
         justify-content: start;
