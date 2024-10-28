@@ -14,7 +14,7 @@
     align-items: center;
     justify-content: center;
     .forms {
-      width: 500px;
+      width: clamp(380px, 33vw, 500px);
       display: flex;
       align-items: center;
       justify-content: center;
