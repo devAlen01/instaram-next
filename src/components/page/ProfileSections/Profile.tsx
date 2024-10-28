@@ -8,6 +8,7 @@ import { SlClose } from "react-icons/sl";
 import { useRouter } from "next/navigation";
 import Loading from "@/ui/Loading/Loading";
 import Image from "next/image";
+import Zoom from "react-medium-image-zoom";
 
 const Profile: FC = () => {
   const [isEdit, setIsEdit] = useState<boolean>(false);
@@ -90,7 +91,9 @@ const Profile: FC = () => {
                 </span>
                 <div className={scss.image}>
                   {item.mediaType === "PHOTO" ? (
-                    <img src={item.mediaUrl} alt="post" />
+                    <Zoom>
+                      <img src={item.mediaUrl} alt="post" />
+                    </Zoom>
                   ) : (
                     <video src={item.mediaUrl} controls></video>
                   )}

@@ -45,12 +45,15 @@ const SignIn: FC = () => {
       setApiResponse(error.message ? "Неверные входные данные" : "");
     }
   };
-
+  let windowSize = window.innerWidth < 900;
   return (
     <section className={scss.SignIn}>
       <div className="container">
         <div className={scss.content}>
-          <div className={scss.image}>
+          <div
+            className={scss.image}
+            style={{ display: windowSize ? "none" : "" }}
+          >
             <Image
               width={300}
               height={500}
