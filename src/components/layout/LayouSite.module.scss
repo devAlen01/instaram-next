@@ -6,7 +6,7 @@
   .site {
     display: flex;
     .right {
-      width: clamp(220px, 33vw, 600px);
+      width: clamp(220px, 23vw, 600px);
       height: 100vh;
       border-left: 1px solid rgba(128, 128, 128, 0.376);
       position: sticky;
