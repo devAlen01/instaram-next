@@ -2,31 +2,25 @@
 import React, { FC, useState } from "react";
 import scss from "./SignUp.module.scss";
 import Link from "next/link";
-import Image from "next/image";
-import logo from "@/assets/logo.png";
+
 import { useSignUpMutation } from "@/redux/api/auth";
 import { SubmitHandler, useForm } from "react-hook-form";
 import { useRouter } from "next/navigation";
-import { useUploadMediaFileMutation } from "@/redux/api/upload";
 import InstaIcon from "@/assets/icons/insta-icon";
 
 const SignUp: FC = () => {
   const [signUpMutation] = useSignUpMutation();
-  const [uploadMediaFileMutation] = useUploadMediaFileMutation();
   const [apiResponse, setApiResponse] = useState<string>("");
   const { register, handleSubmit, reset } = useForm<ISignUpAuth>();
   const router = useRouter();
 
   const onSubmit: SubmitHandler<ISignUpAuth> = async (data) => {
-    const userPhoto = data.file![0];
-    const formData = new FormData();
-    formData.append("file", userPhoto);
-    const { data: photo } = await uploadMediaFileMutation(formData);
     try {
       const newUser: ISignUpAuth = {
         email: data.email,
         username: data.username,
-        photo: String(photo?.url),
+        photo:
+          "https://static-00.iconduck.com/assets.00/avatar-default-icon-1975x2048-2mpk4u9k.png",
         password: data.password,
       };
       const response: any = await signUpMutation(newUser);
@@ -68,11 +62,7 @@ const SignUp: FC = () => {
                   placeholder="Name"
                   {...register("username", { required: true })}
                 />
-                <input
-                  required
-                  type="file"
-                  {...register("file", { required: true })}
-                />
+
                 <input
                   required
                   type="password"

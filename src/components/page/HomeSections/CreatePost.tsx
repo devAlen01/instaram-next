@@ -4,13 +4,12 @@ import React, { FC } from "react";
 import scss from "./CreatePost.module.scss";
 import { SlClose } from "react-icons/sl";
 import { useCreatePostMutation } from "@/redux/api/posts";
-import { useUploadMediaFileMutation } from "@/redux/api/upload";
 import { SubmitHandler, useForm } from "react-hook-form";
 import { usepostStore } from "@/store/usePostStore";
+import axios from "axios";
 
 const CreatePost: FC = () => {
   const [createPostMutation] = useCreatePostMutation();
-  const [uploadMediaFileMutation] = useUploadMediaFileMutation();
   const { register, handleSubmit, reset } = useForm<POSTS.CreatePostRequest>();
   const { isCreate, setIsCreate } = usepostStore();
 
@@ -19,7 +18,17 @@ const CreatePost: FC = () => {
     const formData = new FormData();
     formData.append("file", selectedFile);
     try {
-      const { data: file } = await uploadMediaFileMutation(formData);
+      const response = await axios.post(
+        "https://api.elchocrud.pro/api/v1/upload/file",
+        formData,
+        {
+          headers: {
+            "Content-Type": "multipart/form-data",
+          },
+        }
+      );
+
+      const file = response.data;
       const newPost: POSTS.CreatePostRequest = {
         caption: data.caption,
         mediaType: data.mediaType,

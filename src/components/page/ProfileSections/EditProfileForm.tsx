@@ -5,13 +5,15 @@ import scss from "./EditProfileForm.module.scss";
 import { useUpdateProfileMutation } from "@/redux/api/auth";
 import { SubmitHandler, useForm } from "react-hook-form";
 import { SlClose } from "react-icons/sl";
-import { useUploadMediaFileMutation } from "@/redux/api/upload";
+import axios from "axios";
+
 interface IUpdateProps {
   username: string;
   photo: string;
   isEdit: boolean;
   setIsEdit: (value: boolean) => void;
 }
+
 const EditProfileForm: FC<IUpdateProps> = ({
   photo,
   username,
@@ -21,7 +23,6 @@ const EditProfileForm: FC<IUpdateProps> = ({
   const { register, handleSubmit, reset } =
     useForm<AUTH.UpdateProfileRequest>();
   const [updateProfileMutation] = useUpdateProfileMutation();
-  const [uploadMediaFileMutation] = useUploadMediaFileMutation();
 
   const handleUpdate: SubmitHandler<AUTH.UpdateProfileRequest> = async (
     data
@@ -29,18 +30,31 @@ const EditProfileForm: FC<IUpdateProps> = ({
     const selectedFile = data.file![0];
     const formData = new FormData();
     formData.append("file", selectedFile);
-    const { data: file } = await uploadMediaFileMutation(formData);
-    const newData: AUTH.UpdateProfileRequest = {
-      photo: String(file?.url),
-      username: data.username,
-    };
+
     try {
+      const response = await axios.post(
+        "https://api.elchocrud.pro/api/v1/upload/file",
+        formData,
+        {
+          headers: {
+            "Content-Type": "multipart/form-data",
+          },
+        }
+      );
+
+      const file = response.data;
+
+      const newData: AUTH.UpdateProfileRequest = {
+        photo: String(file?.url),
+        username: data.username,
+      };
+
       const { data: res } = await updateProfileMutation(newData);
       console.log("Update Success:", res);
       reset();
       setIsEdit(false);
     } catch (error) {
-      console.error("Update Error:", error);
+      console.error("Error uploading file:", error);
     }
   };
 

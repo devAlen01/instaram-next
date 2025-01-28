@@ -91,7 +91,10 @@ const Posts: FC = () => {
                     width={470}
                     height={400}
                     priority
-                    src={item?.mediaUrl}
+                    src={
+                      item?.mediaUrl ||
+                      "https://st.depositphotos.com/1757583/3069/i/450/depositphotos_30694305-stock-photo-black-background-texture.jpg"
+                    }
                     alt="post"
                   />
                 ) : (
